@@ -1,57 +1,16 @@
+<!-- templates/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capture Photo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Real-time Webcam Processing</title>
 </head>
 <body>
-    <div class="dashboard-page"> 
-        <!-- First box of Dashboard -->
-        <div class="Dashboard-menu-header">
-            <h7 id="today_date">Date: {{ today_date }}</h7>
-            <h1>Camera App Made with OpenCv</h1>
-            <h7 id="today_time">Time: {{ today_time }}</h7> 
-        </div>
-
-        <!-- Second box of Dashboard -->
-        <div class="Dashboard-menux">
-            <form action="/" method="POST">
-                <h4>Captutre Photos</h4>
-                <div class="Dashboard-menu">
-                    <div class="box2">
-                        <div class="video-container">
-                            <img src="{{ url_for('video_feed') }}" alt="Video_capture">
-                        </div>
-                    </div>
-                </div>
-                <div class="submit-container">
-                    <input type="submit" value="Capture Photo" name="click" style="cursor: pointer;">
-                </div>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <span>{{ messages[0] }}</span>
-                    {% endif %}
-                {% endwith %}
-            </form>
-        </div>
-    </div> 
-  
-    <script>
-        $(document).ready(function() {
-            function updateTime() {
-                const now = new Date();
-                const date = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-                const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    
-                $('#today_date').text('Date: ' + date);
-                $('#today_time').text('Time: ' + time);
-            }
-            setInterval(updateTime, 1000);  // Update every second
-            updateTime();  // Initial call to set the time immediately
-        });
-    </script>
+    <h1>Real-time Webcam Processing</h1>
+    <div>
+        <img id="video_feed" src="{{ url_for('video_feed') }}">
+    </div>
 </body>
 </html>
